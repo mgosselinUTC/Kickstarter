@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Kickstarter.Api;
+using Kickstarter.Api.Queries;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,26 @@ namespace Kickstarter
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            string state = textBox1.Text;
+
+            var client = new KickstarterClient();
+
+            var session = await client.StartSession(null, null);
+
+            var tableTop = await session.Query(new FindCategory("Tabletop Games"));
+
+            var query = new DiscoverProjects()
+                          .InCategory(tableTop)
+                          .InStatus("live")
+                          .SortedBy("launch_date")
+                          .Take(200);
+
+            Console.WriteLine(from p in await session.Query(query) orderby p.LaunchedAt select p);
+
         }
     }
 }
