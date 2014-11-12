@@ -25,7 +25,7 @@ namespace Kickstarter
 
             var client = new KickstarterClient();
 
-            var session = await client.StartSession(null, null);
+            var session = await client.StartSession("kickstarter@utc4me.org", "utc4medotorg");
 
             var tableTop = await session.Query(new FindCategory("Tabletop Games"));
 
