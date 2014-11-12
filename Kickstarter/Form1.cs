@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,13 +28,22 @@ namespace Kickstarter
 
             var session = await client.StartSession("kickstarter@utc4me.org", "utc4medotorg");
 
-            var tableTop = await session.Query(new FindCategory("Tabletop Games"));
+            StreamReader reader = new StreamReader("states.txt");
+            string line = "";
+            string[] states = new string[50];
+            int counter = 0;
+            while((line = reader.ReadLine()) != null) {
+                states[counter] = line;
+                counter ++;
+            }
+
+            int stateID = Array.IndexOf(states, state) + /*alabama... */ 2347559;
 
             var query = new DiscoverProjects()
-                          .InCategory(tableTop)
                           .InStatus("live")
                           .SortedBy("launch_date")
-                          .Take(200);
+                          .Take(200)
+                          .Woe("" + stateID);
 
             Console.WriteLine(from p in await session.Query(query) orderby p.LaunchedAt select p);
 
