@@ -22,20 +22,30 @@ namespace Kickstarter
 
         private void setBusy(bool b)
         {
+            if (b)
+            {
+                progressBar1.Style = ProgressBarStyle.Marquee;
+                progressBar1.MarqueeAnimationSpeed = 10;
+            }
+            else
+            {
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = 1;
+                progressBar1.Value = 0;
+                progressBar1.Style = ProgressBarStyle.Continuous;
+            }
+            button1.Enabled = !b;
             busy = b;
             busyLabel.Text = "Busy: " + b;
+            if (!b) status.Text = "Ready!";
         }
 
         private async void login()
         {
-            button1.Enabled = false;
             setBusy(true);
             var client = new KickstarterClient();
             session = await client.StartSession("kickstarter@utc4me.org", "utc4medotorg");
-            Console.WriteLine("logged in!");
-            status.Text = "Ready!";
             setBusy(false);
-            button1.Enabled = true;
         }
 
         //im going to assume this takes little to no time
@@ -69,20 +79,13 @@ namespace Kickstarter
 
         private async Task<IEnumerable<Project>> getProjectsFrom(string state, int take, string sort)
         {
+            status.Text = "Retrieving projects...";
             return await session.Query(new DiscoverProjects().Woe("" + getIDforState(state)).SortedBy(sort).Take(take));
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            //int stateID = getIDforState(textBox1.Text);
-
-            if (busy)
-            {
-                Console.WriteLine("Yo dawg, calm yo self!");
-                return;
-            }
-
-            writeProjects(comboBox1.Text, Int32.Parse(textBox2.Text), comboBox2.Text);
+            go();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -93,7 +96,10 @@ namespace Kickstarter
         private async void writeProjects(string state, int take, string sort)
         {
             setBusy(true);
+
             IEnumerable<Project> projects = await getProjectsFrom(state, take, sort);
+
+            status.Text = "Writing projects...";
 
             string path = Environment.GetEnvironmentVariable("userprofile") + "\\Desktop\\";
             
@@ -102,6 +108,7 @@ namespace Kickstarter
             StreamWriter writer = new StreamWriter(path);
             writer.WriteLine("Project Name,Author,Location,,Status,Pledged,Goal,Backers,Launch Date,Deadline,Categorey");
 
+            progressBar1.Style = ProgressBarStyle.Continuous;
             progressBar1.Minimum = 0;
             progressBar1.Maximum = projects.Count();
             progressBar1.Value = 0;
@@ -147,6 +154,22 @@ namespace Kickstarter
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
+        }
+
+        private async void go()
+        {
+            if (busy)
+                return;
+
+            writeProjects(comboBox1.Text, Int32.Parse(textBox2.Text), comboBox2.Text);
+        }
+
+        private void keyPressed(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                go();
+            }
         }
     }
 }

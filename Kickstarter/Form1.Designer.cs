@@ -67,8 +67,9 @@
             this.textBox2.Location = new System.Drawing.Point(65, 41);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(103, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBox2.TabIndex = 2;
             this.textBox2.Text = "100";
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyPressed);
             // 
             // label2
             // 
@@ -94,7 +95,8 @@
             this.comboBox1.Location = new System.Drawing.Point(65, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(103, 21);
-            this.comboBox1.TabIndex = 11;
+            this.comboBox1.TabIndex = 1;
+            this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyPressed);
             // 
             // busyLabel
             // 
@@ -126,14 +128,15 @@
             this.comboBox2.Location = new System.Drawing.Point(65, 70);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(103, 21);
-            this.comboBox2.TabIndex = 15;
+            this.comboBox2.TabIndex = 3;
             this.comboBox2.Text = "Magic";
+            this.comboBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyPressed);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(93, 154);
+            this.progressBar1.Location = new System.Drawing.Point(131, 154);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(198, 13);
+            this.progressBar1.Size = new System.Drawing.Size(160, 13);
             this.progressBar1.TabIndex = 16;
             // 
             // pictureBox1
