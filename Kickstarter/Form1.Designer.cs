@@ -141,7 +141,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Kickstarter.Properties.Resources.kickstarter_logo_k_color;
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(174, 12);
             this.pictureBox1.Name = "pictureBox1";
