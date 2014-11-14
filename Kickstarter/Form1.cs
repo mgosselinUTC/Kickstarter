@@ -36,7 +36,7 @@ namespace Kickstarter
             }
             button1.Enabled = !b;
             busy = b;
-            busyLabel.Text = "Busy: " + b;
+            // busyLabel.Text = "Busy: " + b;
             if (!b) status.Text = "Ready!";
         }
 
@@ -106,7 +106,7 @@ namespace Kickstarter
             path += "" + state + "-";
             path += DateTime.Now.ToString().Replace(",", "").Replace(":", "").Replace("/", "_") + ".csv";
             StreamWriter writer = new StreamWriter(path);
-            writer.WriteLine("Project Name,Author,Location,,Status,Pledged,Goal,Backers,Launch Date,Deadline,Categorey");
+            writer.WriteLine("Project Name,Author,Location,,Status,Pledged,Goal,Backers,Launch Date,Deadline,Categorey,Url");
 
             progressBar1.Style = ProgressBarStyle.Continuous;
             progressBar1.Minimum = 0;
@@ -134,6 +134,7 @@ namespace Kickstarter
                     "\"" + project.LaunchedAt.ToShortDateString() + "\"",
                     "\"" + project.Deadline.ToShortDateString() + "\"",
                     "\"" + project.Category.Name.Replace("\"", "\"\"") + "\"",
+                    "\"" + createProjectURL(project) + "\"",
 
                 }));
                 progressBar1.PerformStep();
@@ -141,6 +142,11 @@ namespace Kickstarter
 
             writer.Close();
             setBusy(false);
+        }
+
+        private string createProjectURL(Project p)
+        {
+            return "http://kickstarter.com/projects/" + p.Id + "/" + p.Slug;
         }
 
         private void label4_Click(object sender, EventArgs e)

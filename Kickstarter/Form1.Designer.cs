@@ -35,7 +35,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.status = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.busyLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -98,15 +97,6 @@
             this.comboBox1.TabIndex = 1;
             this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyPressed);
             // 
-            // busyLabel
-            // 
-            this.busyLabel.AutoSize = true;
-            this.busyLabel.Location = new System.Drawing.Point(12, 102);
-            this.busyLabel.Name = "busyLabel";
-            this.busyLabel.Size = new System.Drawing.Size(62, 13);
-            this.busyLabel.TabIndex = 12;
-            this.busyLabel.Text = "placeholder";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -141,6 +131,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(174, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -158,7 +149,6 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.busyLabel);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.status);
             this.Controls.Add(this.label2);
@@ -183,7 +173,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label status;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label busyLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ProgressBar progressBar1;
