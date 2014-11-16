@@ -131,14 +131,14 @@
   <ItemGroup>
     <Content Include="alpha2.ico" />
     <Content Include="originalScaled.ico" />
-    <Content Include="res\alpha1.ico" />
-    <Content Include="res\alpha1.png" />
-    <Content Include="res\alpha2.ico" />
-    <Content Include="res\alpha2.png" />
-    <Content Include="res\alpha3.ico" />
-    <Content Include="res\alpha3.png" />
-    <Content Include="res\original.png" />
-    <Content Include="res\originalScaled.ico" />
+    <EmbeddedResource Include="res\alpha1.ico" />
+    <EmbeddedResource Include="res\alpha1.png" />
+    <EmbeddedResource Include="res\alpha2.ico" />
+    <EmbeddedResource Include="res\alpha2.png" />
+    <EmbeddedResource Include="res\alpha3.ico" />
+    <EmbeddedResource Include="res\alpha3.png" />
+    <EmbeddedResource Include="res\original.png" />
+    <EmbeddedResource Include="res\originalScaled.ico" />
     <EmbeddedResource Include="states.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
